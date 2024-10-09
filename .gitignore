@@ -60,3 +60,7 @@ typings/
 # VS Code directories
 .vscode/
 .history/
+
+# TypeScript
+*.tsbuildinfo
+dist/
