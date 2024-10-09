@@ -11,10 +11,10 @@ app.route('/events/:id')
 })
     .put(function (req, res) {
     var event = req.body; //TODO: Validar se o body está correto.
-    (0, events_mongo_1.updateEvent)(req.params.id, event);
+    (0, events_mongo_1.updateEvent)(req.params.id, event); //TODO: Testar no Postman.
 })
     .delete(function (req, res) {
-    //TODO: Implementar para deletar um evento pelo id.
+    (0, events_mongo_1.deleteEvent)(req.params.id);
 });
 app.route('/events')
     .get(function (req, res) {

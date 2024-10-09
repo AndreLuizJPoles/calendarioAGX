@@ -44,3 +44,6 @@ export const updateEvent = (id: string, event: eventType) => {
     return eventModel.findByIdAndUpdate(id, event);
 };
 
+export const deleteEvent = (id: string) => {
+    return eventModel.findByIdAndDelete(id);
+};

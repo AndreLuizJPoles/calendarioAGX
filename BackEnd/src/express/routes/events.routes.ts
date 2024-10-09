@@ -1,4 +1,4 @@
-import { createEvent, getEvents, getEventById, getEventsByMonth, updateEvent } from "../../mongodb/events.mongo";
+import { createEvent, getEvents, getEventById, getEventsByMonth, updateEvent, deleteEvent } from "../../mongodb/events.mongo";
 
 const express = require('express');
 const app = express();
@@ -14,7 +14,7 @@ app.route('/events/:id')
         updateEvent(req.params.id, event); //TODO: Testar no Postman.
     })
     .delete((req, res) => {
-        //TODO: Implementar para deletar um evento pelo id.
+        deleteEvent(req.params.id); //TODO: Testar no Postman.
     });
 
 app.route('/events')
