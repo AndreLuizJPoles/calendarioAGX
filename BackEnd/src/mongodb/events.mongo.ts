@@ -27,7 +27,7 @@ export const getEvents = () => {
 
 export const getEventById = (id: string) => {
     return eventModel.findById(id);
-}
+};
 
 export const getEventsByMonth = (month: number) => {
     const currentYear = new Date().getFullYear();
@@ -38,4 +38,9 @@ export const getEventsByMonth = (month: number) => {
             $lt: new Date(currentYear, month + 1, 1),
         }
     });
-}
+};
+
+export const updateEvent = (id: string, event: eventType) => {
+    return eventModel.findByIdAndUpdate(id, event);
+};
+

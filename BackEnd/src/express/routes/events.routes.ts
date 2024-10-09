@@ -1,8 +1,7 @@
-import { createEvent, getEvents, getEventById, getEventsByMonth } from "../../mongodb/events.mongo";
+import { createEvent, getEvents, getEventById, getEventsByMonth, updateEvent } from "../../mongodb/events.mongo";
 
 const express = require('express');
 const app = express();
-const eventRoute = express.Router();
 
 app.route('/events/:id')
     .get((req, res) => {
@@ -11,7 +10,8 @@ app.route('/events/:id')
         });
     })
     .put((req, res) => {
-        //TODO: Implementar para atualizar um evento pelo id.
+        let event = req.body; //TODO: Validar se o body está correto.
+        updateEvent(req.params.id, event); //TODO: Testar no Postman.
     })
     .delete((req, res) => {
         //TODO: Implementar para deletar um evento pelo id.
