@@ -1,3 +1,5 @@
+import { createEvent } from "../../mongodb/events.mongo";
+
 const eventRoute = express.Router();
 
 app.route('/events/:id')
@@ -13,7 +15,8 @@ app.route('/events')
         //TODO: Implementar para recuperar todos os eventos.
     })
     .post((req, res) => {
-        //TODO: Implementar para criar um evento.
+        let event = req.body; //TODO: Validar se o body está correto.
+        createEvent(event);
     });
 
 app.get('/events/:month', (req, res) => {

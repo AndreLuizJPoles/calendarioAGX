@@ -9,4 +9,14 @@ const eventSchema = new Schema({
     date: Date,
 });
 
+type eventType = {
+    title: string,
+    description: string,
+    date: Date,
+};
+
 const eventModel = mongoose.model('Event', eventSchema, 'Event');
+
+export const createEvent = (event: eventType) => {
+    return eventModel.create(event);
+};
