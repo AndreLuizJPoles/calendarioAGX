@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getEventById = exports.getEvents = exports.createEvent = void 0;
+exports.getEventsByMonth = exports.getEventById = exports.getEvents = exports.createEvent = void 0;
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 mongoose.connect('mongodb+srv://andrepoles:4vvCKOL3Hzs1eXZH@cluster0.i72hb.mongodb.net/Calendar?retryWrites=true&w=majority&appName=Cluster0');
@@ -22,3 +22,13 @@ var getEventById = function (id) {
     return eventModel.findById(id);
 };
 exports.getEventById = getEventById;
+var getEventsByMonth = function (month) {
+    var currentYear = new Date().getFullYear();
+    return eventModel.find({
+        date: {
+            $gte: new Date(currentYear, month, 1),
+            $lt: new Date(currentYear, month + 1, 1),
+        }
+    });
+};
+exports.getEventsByMonth = getEventsByMonth;

@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var events_mongo_1 = require("../../mongodb/events.mongo");
-var express = require('express'); //Descomentar para testar.
+var express = require('express');
 var app = express();
 var eventRoute = express.Router();
 app.route('/events/:id')
@@ -26,7 +26,9 @@ app.route('/events')
     var event = req.body; //TODO: Validar se o body está correto.
     (0, events_mongo_1.createEvent)(event);
 });
-app.get('/events/:month', function (req, res) {
-    //TODO: Implementar para recuperar todos os eventos de um mês específico.
+app.get('/events/month/:month', function (req, res) {
+    (0, events_mongo_1.getEventsByMonth)(req.params.month).then(function (events) {
+        res.send(events);
+    });
 });
-app.listen(3000);
+app.listen(3000); //TODO: Retirar após fase de testes.

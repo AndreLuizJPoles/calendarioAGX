@@ -28,3 +28,14 @@ export const getEvents = () => {
 export const getEventById = (id: string) => {
     return eventModel.findById(id);
 }
+
+export const getEventsByMonth = (month: number) => {
+    const currentYear = new Date().getFullYear();
+
+    return eventModel.find({
+        date: {
+            $gte: new Date(currentYear, month, 1),
+            $lt: new Date(currentYear, month + 1, 1),
+        }
+    });
+}

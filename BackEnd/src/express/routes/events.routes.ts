@@ -1,4 +1,4 @@
-import { createEvent, getEvents, getEventById } from "../../mongodb/events.mongo";
+import { createEvent, getEvents, getEventById, getEventsByMonth } from "../../mongodb/events.mongo";
 
 const express = require('express');
 const app = express();
@@ -28,8 +28,10 @@ app.route('/events')
         createEvent(event);
     });
 
-app.get('/events/:month', (req, res) => {
-    //TODO: Implementar para recuperar todos os eventos de um mês específico.
+app.get('/events/month/:month', (req, res) => {
+    getEventsByMonth(req.params.month).then((events) => {
+        res.send(events);
+    });
 });
 
 app.listen(3000); //TODO: Retirar após fase de testes.
