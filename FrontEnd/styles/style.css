@@ -1,3 +1,26 @@
 body{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
+#addEvent{
+    background-color: rgb(2, 190, 2);
+    margin-left: 1rem;
+}
+
+#deleteEvent{
+    background-color: rgb(190, 2, 2);
+}
+
+#updateEvent{
+    background-color: rgb(2, 2, 190);
+}
+
+.button{
+    color: white;
+    height: 2.5rem;
+    width: 8.5rem;
+    margin: 0.5rem;
+    font-size: 1.2rem;
+    border: 0cap;
+    border-radius: 5px;
+}

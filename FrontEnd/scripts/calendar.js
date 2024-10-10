@@ -24,20 +24,17 @@ async function getData() {
     let aux = [];
     response.data.forEach(event => {
         let eventDate = new Date(event.date);
-        console.log(eventDate);
         let dateString = `${eventDate.getFullYear()}-${eventDate.getMonth() + 1}-`;
         if(eventDate.getDate() < 10) {
             dateString += `0${eventDate.getDate()}`;
         }else{
             dateString += `${eventDate.getDate()}`;
         }
-        console.log(dateString);
         aux.push({
             title: event.title,
             start: dateString,
         });
     });
-    console.log(aux);
     return aux;
 }
 
