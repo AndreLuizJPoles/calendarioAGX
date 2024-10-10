@@ -5,19 +5,18 @@ mongoose.connect('mongodb+srv://andrepoles:4vvCKOL3Hzs1eXZH@cluster0.i72hb.mongo
 
 const eventSchema = new Schema({
     title: String,
-    description: String,
     date: Date,
 });
 
 type eventType = {
     title: string,
-    description: string,
     date: Date,
 };
 
 const eventModel = mongoose.model('Event', eventSchema, 'Event');
 
-export const createEvent = (event: eventType) => {
+export const createEvent = (event) => {
+    let doc = new eventModel(event);
     return eventModel.create(event);
 };
 

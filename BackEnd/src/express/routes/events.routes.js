@@ -3,8 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var events_mongo_1 = require("../../mongodb/events.mongo");
 var express = require('express');
 var cors = require('cors');
+var bodyParser = require('body-parser');
 var app = express();
 app.use(cors());
+app.use(bodyParser.json());
 app.route('/events/:id')
     .get(function (req, res) {
     (0, events_mongo_1.getEventById)(req.params.id).then(function (event) {
@@ -25,8 +27,9 @@ app.route('/events')
     });
 })
     .post(function (req, res) {
-    var event = req.body; //TODO: Validar se o body está correto.
+    var event = req.body;
     (0, events_mongo_1.createEvent)(event);
+    res.send('Event created successfully');
 });
 app.get('/events/month/:month', function (req, res) {
     (0, events_mongo_1.getEventsByMonth)(req.params.month).then(function (events) {

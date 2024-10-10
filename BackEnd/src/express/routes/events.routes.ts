@@ -2,9 +2,11 @@ import { createEvent, getEvents, getEventById, getEventsByMonth, updateEvent, de
 
 const express = require('express');
 const cors = require('cors');
+const bodyParser = require('body-parser');
 const app = express();
 
 app.use(cors());
+app.use(bodyParser.json());
 
 app.route('/events/:id')
     .get((req, res) => {
@@ -27,8 +29,9 @@ app.route('/events')
         });
     })
     .post((req, res) => {
-        let event = req.body; //TODO: Validar se o body está correto.
-        createEvent(event);
+        let event = req.body;
+        createEvent(event)
+        res.send('Event created successfully');
     });
 
 app.get('/events/month/:month', (req, res) => {

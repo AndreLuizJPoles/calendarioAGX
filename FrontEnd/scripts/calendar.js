@@ -33,6 +33,7 @@ async function getData() {
         aux.push({
             title: event.title,
             start: dateString,
+            id: event._id
         });
     });
     return aux;

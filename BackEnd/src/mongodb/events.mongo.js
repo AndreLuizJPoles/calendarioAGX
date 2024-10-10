@@ -6,11 +6,11 @@ var Schema = mongoose.Schema;
 mongoose.connect('mongodb+srv://andrepoles:4vvCKOL3Hzs1eXZH@cluster0.i72hb.mongodb.net/Calendar?retryWrites=true&w=majority&appName=Cluster0');
 var eventSchema = new Schema({
     title: String,
-    description: String,
     date: Date,
 });
 var eventModel = mongoose.model('Event', eventSchema, 'Event');
 var createEvent = function (event) {
+    var doc = new eventModel(event);
     return eventModel.create(event);
 };
 exports.createEvent = createEvent;
