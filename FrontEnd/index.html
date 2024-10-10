@@ -8,15 +8,14 @@
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <link rel="stylesheet" href="./styles/style.css">
   <script type="module" src="./scripts/calendar.js"></script>
-  <script src="./scripts/events.js"></script>
 </head>
 
 <body>
   <div class="header">
     <h1>Calendar</h1>
     <button id="addEvent" class="button" onclick="popupAddEvent()">Add Event</button>
-    <button id="deleteEvent" class="button" onclick="deleteEvent()">Delete Event</button>
-    <button id="updateEvent" class="button" onclick="updateEvent()">Update Event</button>
+    <button id="deleteEvent" class="button" onclick="popupdeleteEvent()">Delete Event</button>
+    <button id="updateEvent" class="button" onclick="popupupdateEvent()">Update Event</button>
     <div id='calendar'></div>
 </body>
 
@@ -31,6 +30,22 @@
     <div id="div-popup-buttons">
       <button id="confirmAdd" class="button" onclick="addEvent()">Add Event</button>
       <button id="cancelAdd" class="button">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div id="deletePopup" class="popup">
+  <div class="popup-content">
+    <span id="x2" class="close-btn" onclick="closeDelete()">&times;</span>
+    <h3>Add Event</h3>
+    <div id="div-inputs">
+      <select id="eventsInputDelete" class="input">
+        <option value="0">Select an event</option>
+      </select>
+    </div>
+    <div id="div-popup-buttons">
+      <button id="confirmDelete" class="button" onclick="deleteEvent()">Delete Event</button>
+      <button id="cancelDelete" class="button">Cancel</button>
     </div>
   </div>
 </div>

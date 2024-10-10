@@ -68,10 +68,16 @@ h1{
 #confirmAdd {
     background-color: rgb(2, 190, 2);
     color: white;
-    width: 40%;
+    width: 50%;
 }
 
-#cancelAdd {
+#confirmDelete {
+    background-color: rgb(190, 2, 2);
+    color: white;
+    width: 50%;
+}
+
+#cancelAdd, #cancelDelete, #cancelUpdate {
     background-color: grey;
     color: white;
     width: 40%;

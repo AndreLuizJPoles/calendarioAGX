@@ -1,7 +1,10 @@
 const cancelAdd = document.getElementById('cancelAdd');
+const cancelDelete = document.getElementById('cancelDelete');
 const addPopup = document.getElementById('addPopup');
+const deletePopup = document.getElementById('deletePopup');
 
 cancelAdd.addEventListener('click', closeAdd);
+cancelDelete.addEventListener('click', closeDelete);
 
 function closeAdd() {
     addPopup.style.display = 'none';
@@ -32,17 +35,51 @@ async function addEvent() {
         title.value = '';
         date.value = '';
         closeAdd();
-        alert(response.data);
         location.reload();
     } catch (error) {
         console.log(error);
     }
 }
 
-function deleteEvent() {
-    alert("Event deleted");//TODO: Alterar para deletar evento
+function popupdeleteEvent() {
+    deletePopup.style.display = 'block';
 };
 
-function updateEvent() {
+function closeDelete() {
+    deletePopup.style.display = 'none';
+}
+
+async function deleteEvent() {
+    const idEvent = document.getElementById('eventsInputDelete').value;
+    console.log(idEvent);
+    const LOCAL_API_URL_DELETE= `http://localhost:3000/events/${idEvent}`;
+
+    try {
+        const response = await axios.delete(LOCAL_API_URL_DELETE);
+        closeDelete();
+        location.reload();
+    }catch(error){
+        console.log(error);
+    }
+}
+
+function popupupdateEvent() {
     alert("Event updated");//TODO: Alterar para atualizar evento
 };
+
+window.onload = async function() {
+    const LOCAL_API_URL = 'http://localhost:3000/events';
+    try{
+        const response = await axios.get(LOCAL_API_URL);
+        const dataList = document.getElementById('eventsInputDelete');
+
+        response.data.forEach(event => {
+            const option = document.createElement('option');
+            option.value = event._id;
+            option.text = event.title;
+            dataList.appendChild(option);
+        });
+    }catch(error){
+        console.log(error);
+    }
+}
