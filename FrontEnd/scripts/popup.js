@@ -18,7 +18,7 @@ async function addEvent() {
     const title = document.getElementById('titleInputAdd');
     const date = document.getElementById('dateInputAdd');
 
-    if (title == "" || date == "") {
+    if (title.value == "" || date.value == "") {
         alert("Please fill all fields");
         return;
     }
@@ -51,7 +51,10 @@ function closeDelete() {
 
 async function deleteEvent() {
     const idEvent = document.getElementById('eventsInputDelete').value;
-    console.log(idEvent);
+    if(idEvent == 0){
+        alert("Please select an event");
+        return;
+    }
     const LOCAL_API_URL_DELETE= `http://localhost:3000/events/${idEvent}`;
 
     try {
