@@ -1,7 +1,10 @@
 import { createEvent, getEvents, getEventById, getEventsByMonth, updateEvent, deleteEvent } from "../../mongodb/events.mongo";
 
 const express = require('express');
+const cors = require('cors');
 const app = express();
+
+app.use(cors());
 
 app.route('/events/:id')
     .get((req, res) => {
@@ -34,4 +37,6 @@ app.get('/events/month/:month', (req, res) => {
     });
 });
 
-app.listen(3000); //TODO: Retirar após fase de testes.
+app.listen(3000, () => {
+    console.log('Server is running on http://localhost:3000');
+}); //TODO: Retirar após fase de testes.
