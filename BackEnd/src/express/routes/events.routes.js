@@ -14,7 +14,7 @@ app.route('/events/:id')
     (0, events_mongo_1.updateEvent)(req.params.id, event); //TODO: Testar no Postman.
 })
     .delete(function (req, res) {
-    (0, events_mongo_1.deleteEvent)(req.params.id);
+    (0, events_mongo_1.deleteEvent)(req.params.id); //TODO: Testar no Postman.
 });
 app.route('/events')
     .get(function (req, res) {
