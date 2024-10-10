@@ -15,7 +15,7 @@ type eventType = {
 
 const eventModel = mongoose.model('Event', eventSchema, 'Event');
 
-export const createEvent = (event) => {
+export const createEvent = (event: eventType) => {
     let doc = new eventModel(event);
     return eventModel.create(event);
 };
@@ -43,6 +43,10 @@ export const updateEvent = (id: string, event: eventType) => {
     return eventModel.findByIdAndUpdate(id, event);
 };
 
-export const deleteEvent = (id: string) => {
-    return eventModel.findByIdAndDelete(id);
+export const deleteEvent = async (id: string) => {
+    try {
+        const deletedEvent = await eventModel.findByIdAndDelete(id);
+    } catch (error) {
+        console.log('Erro ao deletar evento:'+ error);
+    }
 };

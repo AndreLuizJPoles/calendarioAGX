@@ -15,11 +15,12 @@ app.route('/events/:id')
         });
     })
     .put((req, res) => {
-        let event = req.body; //TODO: Validar se o body está correto.
+        let event = req.body;
         updateEvent(req.params.id, event); //TODO: Testar no Postman.
     })
     .delete((req, res) => {
-        deleteEvent(req.params.id); //TODO: Testar no Postman.
+        deleteEvent(req.params.id);
+        res.send('Deletado com sucesso');
     });
 
 app.route('/events')

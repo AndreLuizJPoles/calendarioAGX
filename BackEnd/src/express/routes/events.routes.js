@@ -14,11 +14,12 @@ app.route('/events/:id')
     });
 })
     .put(function (req, res) {
-    var event = req.body; //TODO: Validar se o body está correto.
+    var event = req.body;
     (0, events_mongo_1.updateEvent)(req.params.id, event); //TODO: Testar no Postman.
 })
     .delete(function (req, res) {
-    (0, events_mongo_1.deleteEvent)(req.params.id); //TODO: Testar no Postman.
+    (0, events_mongo_1.deleteEvent)(req.params.id);
+    res.send('Deletado com sucesso');
 });
 app.route('/events')
     .get(function (req, res) {
