@@ -41,7 +41,6 @@ async function getData() {
             id: event._id
         });
     });
-    console.log(aux);
     return aux;
 }
 

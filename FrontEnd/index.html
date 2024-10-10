@@ -17,6 +17,24 @@
     <button id="addEvent" class="button" onclick="addEvent()">Add Event</button>
     <button id="deleteEvent" class="button" onclick="deleteEvent()">Delete Event</button>
     <button id="updateEvent" class="button" onclick="updateEvent()">Update Event</button>
-  <div id='calendar'></div>
+    <div id='calendar'></div>
 </body>
+
+<div id="addPopup" class="popup">
+  <div class="popup-content">
+    <span id="x" class="close-btn" onclick="closeAdd()">&times;</span>
+    <h3>Add Event</h3>
+    <div id="div-inputs">
+      <input type="text" class="input" id="titleInput" placeholder="Event Title">
+      <input type="date" class="input" id="dateInput">
+    </div>
+    <div id="div-popup-buttons">
+      <button id="confirmAdd" class="button">Add Event</button>
+      <button id="cancelAdd" class="button">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script src="./scripts/popup.js"></script>
+
 </html>
