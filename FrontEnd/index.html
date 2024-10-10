@@ -8,15 +8,15 @@
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <link rel="stylesheet" href="./styles/style.css">
   <script type="module" src="./scripts/calendar.js"></script>
+  <script src="./scripts/events.js"></script>
 </head>
 
 <body>
   <div class="header">
     <h1>Calendar</h1>
-    <button id="addEvent" class="button">Add Event</button>
-    <button id="deleteEvent" class="button">Delete Event</button>
-    <button id="updateEvent" class="button">Update Event</button>
+    <button id="addEvent" class="button" onclick="addEvent()">Add Event</button>
+    <button id="deleteEvent" class="button" onclick="deleteEvent()">Delete Event</button>
+    <button id="updateEvent" class="button" onclick="updateEvent()">Update Event</button>
   <div id='calendar'></div>
 </body>
-
 </html>
