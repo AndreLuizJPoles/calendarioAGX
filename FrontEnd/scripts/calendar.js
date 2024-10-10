@@ -24,11 +24,16 @@ async function getData() {
     let aux = [];
     response.data.forEach(event => {
         let eventDate = new Date(event.date);
-        let dateString = `${eventDate.getFullYear()}-${eventDate.getMonth() + 1}-`;
-        if(eventDate.getDate() < 10) {
-            dateString += `0${eventDate.getDate()}`;
+        let dateString = `${eventDate.getFullYear()}-`;
+        if(eventDate.getMonth() < 9) {
+            dateString += `0${eventDate.getMonth() + 1}-`;
         }else{
-            dateString += `${eventDate.getDate()}`;
+            dateString += `${eventDate.getMonth() + 1}-`;
+        }
+        if(eventDate.getDate() < 9) {
+            dateString += `0${eventDate.getDate() + 1}`;
+        }else{
+            dateString += `${eventDate.getDate() + 1}`;
         }
         aux.push({
             title: event.title,
@@ -36,6 +41,7 @@ async function getData() {
             id: event._id
         });
     });
+    console.log(aux);
     return aux;
 }
 
