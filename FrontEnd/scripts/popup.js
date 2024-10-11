@@ -78,6 +78,37 @@ function closeUpdate() {
     updatePopup.style.display = 'none';
 };
 
+async function updateEvent() {
+    const idEvent = selectEventUpdate.value;
+    const title = document.getElementById('titleInputUpdate').value;
+    const date = document.getElementById('dateInputUpdate').value;
+
+    if(idEvent == 0){
+        alert("Please select an event");
+        return;
+    }
+
+    if(title == "" || date == ""){
+        alert("Please fill all fields");
+        return;
+    }
+
+    const LOCAL_API_URL_UPDATE = `http://localhost:3000/events/${idEvent}`;
+
+    try{
+        const response = await axios.put(LOCAL_API_URL_UPDATE, 
+            {
+                title: title,
+                date: date
+            }
+        );
+        closeUpdate();
+        location.reload();
+    }catch(error){
+        console.log(error);
+    }
+};
+
 async function onChangeUpdate(){
     const title = document.getElementById('titleInputUpdate');
     const date = document.getElementById('dateInputUpdate');
@@ -98,7 +129,7 @@ async function onChangeUpdate(){
     }catch(error){
         console.log(error);
     }
-}
+};
 
 window.onload = async function() {
     const LOCAL_API_URL = 'http://localhost:3000/events';
@@ -107,12 +138,16 @@ window.onload = async function() {
         const dataList = document.getElementById('eventsInputDelete');
 
         response.data.forEach(event => {
-            const option = document.createElement('option');
-            option.value = event._id;
+            const optionForDataList = document.createElement('option');
+            optionForDataList.value = event._id;
             const eventDate = new Date(event.date).toISOString().split('T')[0];
-            option.text = `${event.title} (${eventDate})`;
-            dataList.appendChild(option);
-            selectEventUpdate.appendChild(option);
+            optionForDataList.text = `${event.title} (${eventDate})`;
+            dataList.appendChild(optionForDataList);
+
+            const optionForSelect = document.createElement('option');
+            optionForSelect.value = event._id;
+            optionForSelect.text = `${event.title} (${eventDate})`;
+            selectEventUpdate.appendChild(optionForSelect);
         });
     }catch(error){
         console.log(error);
