@@ -1,5 +1,3 @@
-let eventsData = [];
-
 function drawCalendar() {
     document.addEventListener('DOMContentLoaded', function () {
         let data = getData;
@@ -9,8 +7,7 @@ function drawCalendar() {
             initialDate: '2024-10-07',
             headerToolbar: {
                 left: 'prev,next today',
-                center: 'title',
-                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                center: 'title'
             },
             events: data,
         });
