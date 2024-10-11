@@ -1,10 +1,13 @@
 const cancelAdd = document.getElementById('cancelAdd');
 const cancelDelete = document.getElementById('cancelDelete');
+const cancelUpdate = document.getElementById('cancelUpdate');
 const addPopup = document.getElementById('addPopup');
 const deletePopup = document.getElementById('deletePopup');
+const updatePopup = document.getElementById('updatePopup');
 
 cancelAdd.addEventListener('click', closeAdd);
 cancelDelete.addEventListener('click', closeDelete);
+cancelUpdate.addEventListener('click', closeUpdate);
 
 function closeAdd() {
     addPopup.style.display = 'none';
@@ -67,7 +70,11 @@ async function deleteEvent() {
 }
 
 function popupupdateEvent() {
-    alert("Event updated");//TODO: Alterar para atualizar evento
+    updatePopup.style.display = 'block';
+};
+
+function closeUpdate() {
+    updatePopup.style.display = 'none';
 };
 
 window.onload = async function() {
