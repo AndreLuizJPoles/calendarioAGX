@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteEvent = exports.updateEvent = exports.getEventsByMonth = exports.getEventById = exports.getEvents = exports.createEvent = void 0;
+exports.deleteEvent = exports.updateEvent = exports.getEventById = exports.getEvents = exports.createEvent = void 0;
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 mongoose.connect('mongodb+srv://andrepoles:4vvCKOL3Hzs1eXZH@cluster0.i72hb.mongodb.net/Calendar?retryWrites=true&w=majority&appName=Cluster0');
@@ -46,7 +46,6 @@ var eventSchema = new Schema({
 });
 var eventModel = mongoose.model('Event', eventSchema, 'Event');
 var createEvent = function (event) {
-    var doc = new eventModel(event);
     return eventModel.create(event);
 };
 exports.createEvent = createEvent;
@@ -58,16 +57,6 @@ var getEventById = function (id) {
     return eventModel.findById(id);
 };
 exports.getEventById = getEventById;
-var getEventsByMonth = function (month) {
-    var currentYear = new Date().getFullYear();
-    return eventModel.find({
-        date: {
-            $gte: new Date(currentYear, month, 1),
-            $lt: new Date(currentYear, month + 1, 1),
-        }
-    });
-};
-exports.getEventsByMonth = getEventsByMonth;
 var updateEvent = function (id, event) {
     return eventModel.findByIdAndUpdate(id, event);
 };

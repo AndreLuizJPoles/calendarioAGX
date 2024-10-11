@@ -15,11 +15,22 @@ app.route('/events/:id')
 })
     .put(function (req, res) {
     var event = req.body;
-    (0, events_mongo_1.updateEvent)(req.params.id, event); //TODO: Testar no Postman.
+    (0, events_mongo_1.updateEvent)(req.params.id, event) //TODO: Testar no Postman.
+        .then(function (updatedEvent) {
+        if (updatedEvent) {
+            res.send(updatedEvent);
+        }
+        else {
+            res.status(404).send('Event not found');
+        }
+    })
+        .catch(function (error) {
+        res.status(500).send(error.message);
+    });
 })
     .delete(function (req, res) {
     (0, events_mongo_1.deleteEvent)(req.params.id);
-    res.send('Deletado com sucesso');
+    res.send('Event deleted successfully');
 });
 app.route('/events')
     .get(function (req, res) {
@@ -32,11 +43,6 @@ app.route('/events')
     (0, events_mongo_1.createEvent)(event);
     res.send('Event created successfully');
 });
-app.get('/events/month/:month', function (req, res) {
-    (0, events_mongo_1.getEventsByMonth)(req.params.month).then(function (events) {
-        res.send(events);
-    });
-});
 app.listen(3000, function () {
     console.log('Server is running on http://localhost:3000');
-}); //TODO: Retirar após fase de testes.
+});

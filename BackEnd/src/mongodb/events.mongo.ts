@@ -16,7 +16,6 @@ type eventType = {
 const eventModel = mongoose.model('Event', eventSchema, 'Event');
 
 export const createEvent = (event: eventType) => {
-    let doc = new eventModel(event);
     return eventModel.create(event);
 };
 
@@ -26,17 +25,6 @@ export const getEvents = () => {
 
 export const getEventById = (id: string) => {
     return eventModel.findById(id);
-};
-
-export const getEventsByMonth = (month: number) => {
-    const currentYear = new Date().getFullYear();
-
-    return eventModel.find({
-        date: {
-            $gte: new Date(currentYear, month, 1),
-            $lt: new Date(currentYear, month + 1, 1),
-        }
-    });
 };
 
 export const updateEvent = (id: string, event: eventType) => {
