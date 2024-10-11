@@ -56,11 +56,11 @@
     <span id="x2" class="close-btn" onclick="closeUpdate()">&times;</span>
     <h3>Update Event</h3>
     <div id="div-inputs">
-      <select id="eventsInputUpdateList" class="input">
+      <select id="eventsInputUpdateList" class="input" onchange="onChangeUpdate()">
         <option value="0">Select an event</option>
       </select>
-      <input type="text" class="input" id="titleInputAdd" placeholder="Event Title">
-      <input type="date" class="input" id="dateInputAdd">
+      <input type="text" class="input" id="titleInputUpdate" placeholder="Event Title">
+      <input type="date" class="input" id="dateInputUpdate">
     </div>
     <div id="div-popup-buttons">
       <button id="confirmUpdate" class="button" onclick="updateEvent()">Update Event</button>
