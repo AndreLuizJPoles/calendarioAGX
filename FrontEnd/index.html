@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='utf-8' />
+  <title>Calendar</title>
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="./styles/style.css">
+  <link rel="shortcut icon" href="./imgs/calendar.png" type="image/x-icon">
+  <script type="module" src="./scripts/calendar.js"></script>
+</head>
+
+<body>
+  <div class="header">
+    <h1>Calendar</h1>
+    <button id="addEvent" class="button" onclick="popupAddEvent()">Add Event</button>
+    <button id="deleteEvent" class="button" onclick="popupdeleteEvent()">Delete Event</button>
+    <button id="updateEvent" class="button" onclick="popupupdateEvent()">Update Event</button>
+    <div id='calendar'></div>
+</body>
+
+<div id="addPopup" class="popup">
+  <div class="popup-content">
+    <span id="x" class="close-btn" onclick="closeAdd()">&times;</span>
+    <h3>Add Event</h3>
+    <div id="div-inputs">
+      <input type="text" class="input" id="titleInputAdd" placeholder="Event Title">
+      <input type="date" class="input" id="dateInputAdd">
+    </div>
+    <div id="div-popup-buttons">
+      <button id="confirmAdd" class="button" onclick="addEvent()">Add Event</button>
+      <button id="cancelAdd" class="button">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div id="deletePopup" class="popup">
+  <div class="popup-content">
+    <span id="x2" class="close-btn" onclick="closeDelete()">&times;</span>
+    <h3>Delete Event</h3>
+    <div id="div-inputs">
+      <select id="eventsInputDelete" class="input">
+        <option value="0">Select an event</option>
+      </select>
+    </div>
+    <div id="div-popup-buttons">
+      <button id="confirmDelete" class="button" onclick="deleteEvent()">Delete Event</button>
+      <button id="cancelDelete" class="button">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div id="updatePopup" class="popup">
+  <div class="popup-content">
+    <span id="x2" class="close-btn" onclick="closeUpdate()">&times;</span>
+    <h3>Update Event</h3>
+    <div id="div-inputs">
+      <select id="eventsInputUpdateList" class="input" onchange="onChangeUpdate()">
+        <option value="0">Select an event</option>
+      </select>
+      <input type="text" class="input" id="titleInputUpdate" placeholder="Event Title">
+      <input type="date" class="input" id="dateInputUpdate">
+    </div>
+    <div id="div-popup-buttons">
+      <button id="confirmUpdate" class="button" onclick="updateEvent()">Update Event</button>
+      <button id="cancelUpdate" class="button">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<script src="./scripts/popup.js"></script>
+
+</html>
