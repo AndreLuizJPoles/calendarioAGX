@@ -50,7 +50,7 @@ var createEvent = function (event) {
 };
 exports.createEvent = createEvent;
 var getEvents = function () {
-    return eventModel.find();
+    return eventModel.find().sort({ date: 1 });
 };
 exports.getEvents = getEvents;
 var getEventById = function (id) {

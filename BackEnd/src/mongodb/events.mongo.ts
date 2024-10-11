@@ -20,7 +20,7 @@ export const createEvent = (event: eventType) => {
 };
 
 export const getEvents = () => {
-    return eventModel.find();
+    return eventModel.find().sort({date: 1});
 };
 
 export const getEventById = (id: string) => {
