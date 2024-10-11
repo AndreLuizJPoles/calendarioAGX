@@ -16,19 +16,35 @@ type eventType = {
 const eventModel = mongoose.model('Event', eventSchema, 'Event');
 
 export const createEvent = (event: eventType) => {
-    return eventModel.create(event);
+    try {
+        return eventModel.create(event);
+    } catch (error) {
+        console.log('Error creating event:' + error);
+    }
 };
 
 export const getEvents = () => {
-    return eventModel.find().sort({date: 1});
+    try {
+        return eventModel.find().sort({ date: 1 });
+    } catch (error) {
+        console.log('Error getting events:' + error);
+    }
 };
 
 export const getEventById = (id: string) => {
-    return eventModel.findById(id);
+    try {
+        return eventModel.findById(id);
+    } catch (error) {
+        console.log('Error getting event by id:' + error);
+    }
 };
 
 export const updateEvent = (id: string, event: eventType) => {
-    return eventModel.findByIdAndUpdate(id, event);
+    try {
+        return eventModel.findByIdAndUpdate(id, event);
+    } catch (error) {
+        console.log('Error updating event:' + error);
+    }
 };
 
 export const deleteEvent = async (id: string) => {
@@ -36,6 +52,6 @@ export const deleteEvent = async (id: string) => {
         const deletedEvent = await eventModel.findByIdAndDelete(id);
         return deletedEvent;
     } catch (error) {
-        console.log('Erro ao deletar evento:'+ error);
+        console.log('Error deleting event:' + error);
     }
 };

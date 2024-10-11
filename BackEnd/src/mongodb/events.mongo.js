@@ -46,19 +46,39 @@ var eventSchema = new Schema({
 });
 var eventModel = mongoose.model('Event', eventSchema, 'Event');
 var createEvent = function (event) {
-    return eventModel.create(event);
+    try {
+        return eventModel.create(event);
+    }
+    catch (error) {
+        console.log('Error creating event:' + error);
+    }
 };
 exports.createEvent = createEvent;
 var getEvents = function () {
-    return eventModel.find().sort({ date: 1 });
+    try {
+        return eventModel.find().sort({ date: 1 });
+    }
+    catch (error) {
+        console.log('Error getting events:' + error);
+    }
 };
 exports.getEvents = getEvents;
 var getEventById = function (id) {
-    return eventModel.findById(id);
+    try {
+        return eventModel.findById(id);
+    }
+    catch (error) {
+        console.log('Error getting event by id:' + error);
+    }
 };
 exports.getEventById = getEventById;
 var updateEvent = function (id, event) {
-    return eventModel.findByIdAndUpdate(id, event);
+    try {
+        return eventModel.findByIdAndUpdate(id, event);
+    }
+    catch (error) {
+        console.log('Error updating event:' + error);
+    }
 };
 exports.updateEvent = updateEvent;
 var deleteEvent = function (id) { return __awaiter(void 0, void 0, void 0, function () {
@@ -73,7 +93,7 @@ var deleteEvent = function (id) { return __awaiter(void 0, void 0, void 0, funct
                 return [2 /*return*/, deletedEvent];
             case 2:
                 error_1 = _a.sent();
-                console.log('Erro ao deletar evento:' + error_1);
+                console.log('Error deleting event:' + error_1);
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }
