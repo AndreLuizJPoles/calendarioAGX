@@ -34,6 +34,7 @@ export const updateEvent = (id: string, event: eventType) => {
 export const deleteEvent = async (id: string) => {
     try {
         const deletedEvent = await eventModel.findByIdAndDelete(id);
+        return deletedEvent;
     } catch (error) {
         console.log('Erro ao deletar evento:'+ error);
     }

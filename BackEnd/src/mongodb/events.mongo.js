@@ -70,7 +70,7 @@ var deleteEvent = function (id) { return __awaiter(void 0, void 0, void 0, funct
                 return [4 /*yield*/, eventModel.findByIdAndDelete(id)];
             case 1:
                 deletedEvent = _a.sent();
-                return [3 /*break*/, 3];
+                return [2 /*return*/, deletedEvent];
             case 2:
                 error_1 = _a.sent();
                 console.log('Erro ao deletar evento:' + error_1);

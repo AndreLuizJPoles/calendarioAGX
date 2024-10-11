@@ -10,40 +10,69 @@ app.use(bodyParser.json());
 
 app.route('/events/:id')
     .get((req, res) => {
-        getEventById(req.params.id).then((event) => {
-            res.send(event);
-        });
-    })
-    .put((req, res) => {
-        let event = req.body;
-        updateEvent(req.params.id, event) //TODO: Testar no Postman.
-            .then(updatedEvent => {
-                if (updatedEvent) {
-                    res.send(updatedEvent);
+        getEventById(req.params.id)
+            .then((event) => {
+                if (event) {
+                    res.status(200).send(event);
                 } else {
                     res.status(404).send('Event not found');
                 }
             })
             .catch(error => {
                 res.status(500).send(error.message);
-
+            });
+    })
+    .put((req, res) => {
+        let event = req.body;
+        updateEvent(req.params.id, event)
+            .then(updatedEvent => {
+                if (updatedEvent) {
+                    res.status(200).send(updatedEvent);
+                } else {
+                    res.status(404).send('Event not found');
+                }
+            })
+            .catch(error => {
+                res.status(500).send(error.message);
             });
     })
     .delete((req, res) => {
-        deleteEvent(req.params.id);
-        res.send('Event deleted successfully');
+        deleteEvent(req.params.id)
+            .then(deletedEvent => {
+                if (deletedEvent) {
+                    res.status(200).send(deletedEvent);
+                } else {
+                    res.status(404).send('Event not found');
+                }
+            })
+            .catch(error => {
+                res.status(500).send(error.message);
+            });
     });
 
 app.route('/events')
     .get((req, res) => {
-        getEvents().then((events) => {
-            res.send(events);
-        });
+        getEvents()
+            .then((events) => {
+                if (events.length === 0) {
+                    res.status(404).send('Events not found');
+                } else {
+                    res.status(200).send(events);
+                }
+            })
+            .catch(error => {
+                res.status(500).send(error.message);
+            });
     })
     .post((req, res) => {
         let event = req.body;
         createEvent(event)
-        res.send('Event created successfully');
+        .then(() => {
+            res.status(201).send('Event created successfully');
+        })
+        .catch(error => {
+            res.status(500).send(error.message);
+        });
     });
 
 app.listen(3000, () => {
